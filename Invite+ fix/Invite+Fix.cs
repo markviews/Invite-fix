@@ -1,27 +1,41 @@
 ﻿using MelonLoader;
+using System;
+using System.Collections;
+using UIExpansionKit.Components;
 using UnityEngine;
 using UnityEngine.UI;
 using VRC.Core;
 
+[assembly: MelonInfo(typeof(Invite__fix.Invite_fix), "Invite+ fix", "1.1", "MarkViews")]
+[assembly: MelonGame("VRChat", "VRChat")]
+
 namespace Invite__fix {
+
     public class Invite_fix : MelonMod {
 
-        GameObject menu;
-        Button button;
+        GameObject socialMenu;
 
         public override void VRChat_OnUiManagerInit() {
-            menu = GameObject.Find("/UserInterface/MenuContent/Screens/UserInfo/User Panel/OnlineFriend");
-            button = GameObject.Find("/UserInterface/MenuContent/Screens/UserInfo/User Panel/OnlineFriend/Actions/Invite").GetComponent<Button>();
-        }
+            socialMenu = GameObject.Find("UserInterface/MenuContent/Screens/Social");
+            GameObject userInfo = GameObject.Find("UserInterface/MenuContent/Screens/UserInfo");
+            Button button = GameObject.Find("UserInterface/MenuContent/Screens/UserInfo/OnlineFriendButtons/Invite").GetComponent<Button>();
 
-        public override void OnGUI() {
-            if (menu == null) return;
-            if (!menu.active) return;
-                if (RoomManager.field_Internal_Static_ApiWorldInstance_0?.InstanceType == ApiWorldInstance.AccessType.InvitePlus) {
-                    if (button.interactable) return;
+            userInfo.AddComponent<EnableDisableListener>().OnEnabled += () => {
+                MelonCoroutines.Start(delayRun(() => {
+                    if (RoomManager.field_Internal_Static_ApiWorldInstance_0?.InstanceType == ApiWorldInstance.AccessType.InvitePlus) {
                         button.interactable = true;
                         button.m_Interactable = true;
-            }
+                    }
+                }));
+            };
         }
+
+        public IEnumerator delayRun(Action action) {
+            while (socialMenu.active == true)
+                yield return null;
+            action.Invoke();
+        }
+
     }
+
 }
