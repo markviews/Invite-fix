@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using VRC.Core;
 
-[assembly: MelonInfo(typeof(Invite__fix.Invite_fix), "Invite+ fix", "1.1", "MarkViews")]
+[assembly: MelonInfo(typeof(Invite__fix.Invite_fix), "Invite+ fix", "1.2", "MarkViews")]
 [assembly: MelonGame("VRChat", "VRChat")]
 
 namespace Invite__fix {
@@ -15,7 +15,12 @@ namespace Invite__fix {
 
         GameObject socialMenu;
 
-        public override void VRChat_OnUiManagerInit() {
+        public override void OnApplicationStart() {
+            MelonCoroutines.Start(UiManagerInitializer());
+        }
+
+            public IEnumerator UiManagerInitializer() {
+            while (VRCUiManager.prop_VRCUiManager_0 == null) yield return null;
             socialMenu = GameObject.Find("UserInterface/MenuContent/Screens/Social");
             GameObject userInfo = GameObject.Find("UserInterface/MenuContent/Screens/UserInfo");
             Button button = GameObject.Find("UserInterface/MenuContent/Screens/UserInfo/OnlineFriendButtons/Invite").GetComponent<Button>();
