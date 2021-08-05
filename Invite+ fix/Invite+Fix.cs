@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using VRC.Core;
 
-[assembly: MelonInfo(typeof(Invite__fix.Invite_fix), "Invite+ fix", "1.3", "MarkViews")]
+[assembly: MelonInfo(typeof(Invite__fix.Invite_fix), "Invite+ fix", "1.3.1", "MarkViews")]
 [assembly: MelonGame("VRChat", "VRChat")]
 
 namespace Invite__fix {
