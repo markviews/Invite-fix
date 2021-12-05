@@ -22,7 +22,7 @@ namespace Invite__fix {
 
             Button button = GameObject.Find("UserInterface/MenuContent/Screens/UserInfo/OnlineFriendButtons/Invite").GetComponent<Button>();
 
-            ExpansionKitApi.GetExpandedMenu(ExpandedMenu.UserDetailsMenu).AddSimpleButton("Invite", new Action(() => {
+            ExpansionKitApi.GetExpandedMenu(ExpandedMenu.UserDetailsMenu).AddSimpleButton("Invite to invite+", new Action(() => {
                 if (RoomManager.field_Internal_Static_ApiWorldInstance_0?.type == InstanceAccessType.InvitePlus) {
                     button.onClick.Invoke();
                 } else {
