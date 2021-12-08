@@ -7,7 +7,7 @@
     <ProjectGuid>{FCBD40B9-4418-4841-945A-362413BF2F46}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Invite__fix</RootNamespace>
-    <AssemblyName>Invite+ fix</AssemblyName>
+    <AssemblyName>InvitePlusFix</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
